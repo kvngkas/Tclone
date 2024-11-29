@@ -1,39 +1,47 @@
-import { GestureResponderEvent, Pressable, StyleSheet, Text, View } from 'react-native';
-import React from 'react';
-import { AntDesign } from '@expo/vector-icons';
-import { Link } from 'expo-router';
+import React from "react";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
-export default function TaskListItem({ task }) {
-  function deleteTask(_event: GestureResponderEvent): void {
-    throw new Error('Function not implemented.');
-  }
-
+const TaskListItem = ({ task, onPress, onDelete }) => {
   return (
-    <Link href={'/${task.id}'} asChild>
-    <Pressable style={styles.container}>
-       
+    <View style={styles.container}>
+      <Pressable onPress={onPress} style={styles.taskTextContainer}>
         <Text style={styles.text}>{task.description}</Text>
-      <AntDesign onPress={deleteTask} name="close" size={16} color="gray" />
-    </Pressable>
-     </Link>     
-  )
-}
+      </Pressable>
+      <Pressable onPress={onDelete} style={styles.deleteButton}>
+        <Text style={styles.deleteText}>Delete</Text>
+      </Pressable>
+    </View>
+  );
+};
+
+export default TaskListItem;
 
 const styles = StyleSheet.create({
-    root: {
-        
-      },
-      container: {
-        backgroundColor: '#1D2125',
-        padding: 15,
-        borderRadius: 5,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        height: '100%',
-      },
-      text: {
-        color: 'white',
-        fontSize: 16,
-      },
-})
+  container: {
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 10,
+    marginVertical: 5,
+    marginHorizontal: 10,
+    backgroundColor: "#fff",
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: "#ddd",
+  },
+  taskTextContainer: {
+    flex: 1, // Takes up the remaining space
+  },
+  text: {
+    fontSize: 16,
+    color: "#333",
+  },
+  deleteButton: {
+    padding: 10,
+    backgroundColor: "red",
+    borderRadius: 5,
+  },
+  deleteText: {
+    color: "white",
+    fontWeight: "bold",
+  },
+});

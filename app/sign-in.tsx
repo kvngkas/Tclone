@@ -1,25 +1,32 @@
-import { Alert, Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native';
-import React, { useState } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import FormField from '@/components/FormField';
-import CustomButton from '@/components/CustomButton';
-import { Link, router } from 'expo-router';
+import {
+  Alert,
+  Dimensions,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+import React, { useState } from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
+import FormField from "@/components/FormField";
+import CustomButton from "@/components/CustomButton";
+import { Link, router } from "expo-router";
 
 const DUMMY_CREDENTIALS = {
-  email: "test@example.com",
-  password: "password123",
+  email: "test@gmail.com",
+  password: "password",
 };
 
 const SignIn = () => {
   const [form, setForm] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const submit = async () => {
     if (!form.email || !form.password) {
-      Alert.alert('Error', 'Please fill in all the fields');
+      Alert.alert("Error", "Please fill in all the fields");
       return;
     }
 
@@ -31,23 +38,30 @@ const SignIn = () => {
         form.email === DUMMY_CREDENTIALS.email &&
         form.password === DUMMY_CREDENTIALS.password
       ) {
-         router.replace('/taskboard');
-         
-
+        router.replace("/taskboard");
       } else {
-        throw new Error('Invalid email or password');
+        throw new Error("Invalid email or password");
       }
     } catch (error) {
-      Alert.alert('Error', error.message);
+      Alert.alert("Error", error.message);
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  setTimeout(() => {
+    router.replace("/taskboard");
+  }, 500);
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView>
-        <View style={[styles.container, { minHeight: Dimensions.get("window").height - 100 }]}>
+        <View
+          style={[
+            styles.container,
+            { minHeight: Dimensions.get("window").height - 100 },
+          ]}
+        >
           <Text style={styles.headerText}>Log in to Trello</Text>
 
           <FormField
