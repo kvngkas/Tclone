@@ -9,6 +9,7 @@ import {
   View,
 } from "react-native";
 import { Link } from "expo-router";
+import { LinearGradient } from "expo-linear-gradient";
 
 const Taskboard = () => {
   const [tasks, setTasks] = useState([
@@ -37,6 +38,7 @@ const Taskboard = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.headerContainer}>
+     
         <Text style={styles.header}>Add Task</Text>
         <TextInput
           value={newTask}
@@ -67,6 +69,7 @@ const Taskboard = () => {
             </View>
           )}
         />
+      
       </View>
     </SafeAreaView>
   );
@@ -77,7 +80,7 @@ export default Taskboard;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f0f0f0",
+    backgroundColor: "#1465de",
   },
   headerContainer: {
     padding: 20,
@@ -86,7 +89,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     marginBottom: 10,
-    color: "#333",
+    color: "white",
   },
   input: {
     color: "#000",
@@ -102,12 +105,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingVertical: 15,
     borderRadius: 5,
-    backgroundColor: "red",
+    backgroundColor: "white",
   },
   btnText: {
     fontSize: 16,
     fontWeight: "bold",
-    color: "white",
+    color: "#1465de",
   },
   listContainer: {
     flex: 1,
@@ -125,13 +128,14 @@ const styles = StyleSheet.create({
     borderColor: "#ddd",
   },
   taskText: {
-    fontSize: 16,
-    color: "blue",
-    textDecorationLine: "underline",
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#1465de",
+    textDecorationLine: "none",
   },
   deleteButton: {
     padding: 10,
-    backgroundColor: "red",
+    backgroundColor: "#1465de",
     borderRadius: 5,
   },
   deleteText: {
